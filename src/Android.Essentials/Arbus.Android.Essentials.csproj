@@ -7,7 +7,7 @@
 		<Authors>ARBUS</Authors>
 		<Description>Essential tools for building Android apps</Description>
 		<RepositoryUrl>https://github.com/ArbusBiz/Arbus.Mobile.Essentials</RepositoryUrl>
-		<License>MS-PL</License>
+		<PackageLicenseExpression>MS-PL</PackageLicenseExpression>
 		<Copyright>Copyright (c) Arbus</Copyright>
 		<PackageTags>android;essentials;extensions;xamarin;xamarin.android;mobile</PackageTags>
 	</PropertyGroup>
