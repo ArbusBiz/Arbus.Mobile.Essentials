@@ -40,10 +40,8 @@ stages:
             inputs:
               command: pack
               searchPatternPack: $(project)
-              configuration: $(buildConfiguration)
-              versioningScheme: byEnvVar
-              versionEnvVar: Build.SourceBranchName
-              arguments: '-p:Version=$(uild.SourceBranchName)'
+              configurationToPack: $(buildConfiguration)
+              arguments: '-p:Version=$(Build.SourceBranchName)'
           - task: NuGetCommand@2
             displayName: 'Push to $(nugetFeed)'
             inputs:
