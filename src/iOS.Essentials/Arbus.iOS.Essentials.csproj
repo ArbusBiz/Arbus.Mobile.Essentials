@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0-ios</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>true</ImplicitUsings>
+		<SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
+		<Authors>ARBUS</Authors>
+		<Description>Essential tools for building iOS apps</Description>
+		<RepositoryUrl>https://github.com/ArbusBiz/Arbus.Mobile.Essentials</RepositoryUrl>
+		<License>MS-PL</License>
+		<Copyright>Copyright (c) Arbus</Copyright>
+		<PackageTags>ios;fluentlayout;essentials;extensions;xamarin;xamarin.ios;mobile</PackageTags>
+	</PropertyGroup>
+</Project>
