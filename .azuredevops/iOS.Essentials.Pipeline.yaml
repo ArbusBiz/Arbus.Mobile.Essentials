@@ -1,5 +1,5 @@
 variables:
-  project: '**/Arbus.iOS.Essentials.csproj'
+  project: '$(Build.SourcesDirectory)\src\iOS.Essentials\Arbus.iOS.Essentials.csproj'
   nugetFeed: 'NuGet.org'
   buildConfiguration: 'Release'
   forDeployment: ${{ startsWith(variables['Build.SourceBranch'], 'refs/heads/release/ios/') }}
@@ -17,7 +17,7 @@ stages:
         - checkout: self
           fetchDepth: 1
         - task: DotNetCoreCLI@2
-          displayName: 'Build $(project)'
+          displayName: 'Build iOS.Essentials'
           inputs:
             command: build
             projects: $(project)
@@ -37,11 +37,15 @@ stages:
           - checkout: self
             fetchDepth: 1
           - task: DotNetCoreCLI@2
-            displayName: 'Pack $(project)'
+            displayName: 'Pack iOS.Essentials'
             inputs:
-              command: pack
+              command: custom
+              custom: pack
               searchPatternPack: $(project)
-              arguments: '-p:Configuration=$(buildConfiguration);Version=$(Build.SourceBranchName)'
+              arguments: >
+                $(project)
+                --output $(Build.ArtifactStagingDirectory)
+                -p:Configuration=$(buildConfiguration);Version=$(Build.SourceBranchName)
           - task: NuGetCommand@2
             displayName: 'Push to $(nugetFeed)'
             inputs:
