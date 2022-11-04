@@ -1,0 +1,53 @@
+variables:
+  project: '**/Arbus.iOS.Essentials.csproj'
+  nugetFeed: 'NuGet.org'
+  buildConfiguration: 'Release'
+
+pool:
+  vmImage: 'Windows-latest'
+
+stages:
+  - stage: build
+    displayName: Build
+    jobs:
+      - job: build_job
+        displayName: Build
+        steps:
+        - checkout: self
+          fetchDepth: 1
+        - task: DotNetCoreCLI@2
+          displayName: 'Build $(project)'
+          inputs:
+            command: build
+            projects: $(project)
+            arguments: '-c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)/Binaries'
+            outputDir: ''
+
+  - stage: deploy
+    displayName: Deploy
+    dependsOn: build
+    condition: and(succeeded(), not(eq(variables['Build.Reason'], 'PullRequest')))
+    jobs:
+      - job: pack
+        displayName: Pack NuGet
+        workspace:
+          clean: all
+        steps:
+          - checkout: self
+            fetchDepth: 1
+          - task: DotNetCoreCLI@2
+            displayName: 'Pack $(project)'
+            inputs:
+              command: pack
+              searchPatternPack: $(project)
+              configuration: $(buildConfiguration)
+              versioningScheme: byEnvVar
+              versionEnvVar: Build.SourceBranchName
+              arguments: '-p:Version=$(uild.SourceBranchName)'
+          - task: NuGetCommand@2
+            displayName: 'Push to $(nugetFeed)'
+            inputs:
+              command: 'push'
+              packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
+              nuGetFeedType: 'external'
+              publishFeedCredentials: '$(nugetFeed)'
