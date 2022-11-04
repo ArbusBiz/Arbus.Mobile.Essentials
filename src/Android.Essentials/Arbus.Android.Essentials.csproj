@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net6.0-android</TargetFramework>
 		<SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
@@ -10,5 +10,6 @@
 		<License>MS-PL</License>
 		<Copyright>Copyright (c) Arbus</Copyright>
 		<PackageTags>android;essentials;extensions;xamarin;xamarin.android;mobile</PackageTags>
+		<PackageProjectUrl>https://github.com/ArbusBiz/Arbus.Mobile.Essentials</PackageProjectUrl>
 	</PropertyGroup>
 </Project>

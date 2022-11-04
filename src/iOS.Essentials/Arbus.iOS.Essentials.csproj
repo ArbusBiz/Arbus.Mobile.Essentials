@@ -9,6 +9,7 @@
 		<RepositoryUrl>https://github.com/ArbusBiz/Arbus.Mobile.Essentials</RepositoryUrl>
 		<License>MS-PL</License>
 		<Copyright>Copyright (c) Arbus</Copyright>
-		<PackageTags>ios;fluentlayout;essentials;extensions;xamarin;xamarin.ios;mobile</PackageTags>
+		<PackageTags>ios;fluentlayout;essentials;autolayout;extensions;xamarin;xamarin.ios;mobile</PackageTags>
+		<PackageProjectUrl>https://github.com/ArbusBiz/Arbus.Mobile.Essentials</PackageProjectUrl>
 	</PropertyGroup>
 </Project>
