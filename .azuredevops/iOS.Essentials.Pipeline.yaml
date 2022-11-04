@@ -2,6 +2,7 @@ variables:
   project: '**/Arbus.iOS.Essentials.csproj'
   nugetFeed: 'NuGet.org'
   buildConfiguration: 'Release'
+  forDeployment: ${{ startsWith(variables['Build.SourceBranch'], 'refs/heads/release/ios/') }}
 
 pool:
   vmImage: 'Windows-latest'
@@ -26,7 +27,7 @@ stages:
   - stage: deploy
     displayName: Deploy
     dependsOn: build
-    condition: and(succeeded(), not(eq(variables['Build.Reason'], 'PullRequest')))
+    condition: and(succeeded(), eq(variables.forDeployment, 'true'))
     jobs:
       - job: pack
         displayName: Pack NuGet
