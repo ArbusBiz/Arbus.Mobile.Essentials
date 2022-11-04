@@ -9,6 +9,13 @@ namespace Arbus.iOS.Essentials.AutoLayout;
 
 public static class FluentLayoutExtensions
 {
+    [Obsolete("Use AddSubviewsForAutoLayout. The method is to be removed in the future.")]
+    public static void SubviewsDoNotTranslateAutoresizingMaskIntoConstraints(this UIView view)
+    {
+        foreach (var subview in view.Subviews)
+            subview.TranslatesAutoresizingMaskIntoConstraints = false;
+    }
+
     public static UIViewAndLayoutAttribute Left(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.Left);
 
     public static UIViewAndLayoutAttribute Right(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.Right);
