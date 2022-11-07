@@ -23,6 +23,12 @@ stages:
             custom: 'workload'
             arguments: 'restore  $(project)'
         - task: DotNetCoreCLI@2
+          displayName: 'Update workloads'
+          inputs:
+            command: 'custom'
+            custom: 'workload'
+            arguments: 'update'
+        - task: DotNetCoreCLI@2
           displayName: 'Build iOS.Essentials'
           inputs:
             command: build
@@ -48,6 +54,12 @@ stages:
               command: 'custom'
               custom: 'workload'
               arguments: 'restore  $(project)'
+          - task: DotNetCoreCLI@2
+            displayName: 'Update workloads'
+            inputs:
+              command: 'custom'
+              custom: 'workload'
+              arguments: 'update'
           - task: DotNetCoreCLI@2
             displayName: 'Pack iOS.Essentials'
             inputs:
