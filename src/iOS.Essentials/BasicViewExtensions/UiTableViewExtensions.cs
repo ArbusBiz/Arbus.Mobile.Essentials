@@ -26,11 +26,13 @@ public static class UiTableViewExtensions
         return tableView;
     }
 
+#if IOS || MACCATALYST
     public static T SetSeparatorStyle<T>(this T tableView, UITableViewCellSeparatorStyle value) where T : UITableView
     {
         tableView.SeparatorStyle = value;
         return tableView;
     }
+#endif
 
     public static T SetFooterView<T>(this T tableView, UIView value) where T : UITableView
     {
@@ -52,7 +54,13 @@ public static class UiTableViewExtensions
 
     public static T SetSectionHeaderTopPadding<T>(this T tableView, nfloat value = default) where T : UITableView
     {
+#if IOS
         if (OperatingSystem.IsIOSVersionAtLeast(15))
+#elif TVOS
+        if (OperatingSystem.IsTvOSVersionAtLeast(15))
+#else
+        if (OperatingSystem.IsMacCatalystVersionAtLeast(15))
+#endif
             tableView.SectionHeaderTopPadding = value;
         return tableView;
     }
@@ -63,11 +71,13 @@ public static class UiTableViewExtensions
         return tableView;
     }
 
+#if IOS || MACCATALYST
     public static T SetSeparatorColor<T>(this T tableView, UIColor? color) where T : UITableView
     {
         tableView.SeparatorColor = color;
         return tableView;
     }
+#endif
 
     public static T SetScrollEnabled<T>(this T tableView, bool value) where T : UITableView
     {

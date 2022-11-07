@@ -11,55 +11,63 @@ public static class AdvancedFluentLayoutExtensions
 {
     private const float _defaultScale = 1;
 
+    [Obsolete("Use WithSameTop().")]
     public static FluentLayout AtTopOf(this UIView view, UIView parentView, nfloat? margin = null) =>
         view.Top().EqualTo().TopOf(parentView).Plus(margin.GetValueOrDefault());
+
+    [Obsolete("Use WithSameLeft().")]
+    public static FluentLayout AtLeftOf(this UIView view, UIView parentView, nfloat? margin = null) =>
+        view.Left().EqualTo().LeftOf(parentView).Plus(margin.GetValueOrDefault());
+
+    [Obsolete("Use WithSameRight().")]
+    public static FluentLayout AtRightOf(this UIView view, UIView parentView, nfloat? margin = null) =>
+        view.Right().EqualTo().RightOf(parentView).Minus(margin.GetValueOrDefault());
+
+    [Obsolete("Use WithSameBottom().")]
+    public static FluentLayout AtBottomOf(this UIView view, UIView parentView, nfloat? margin = null) =>
+        view.Bottom().EqualTo().BottomOf(parentView).Minus(margin.GetValueOrDefault());
 
     public static FluentLayout AtTopOfSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
         view.Top().EqualTo().TopOf(parentView.SafeAreaLayoutGuide).Plus(margin.GetValueOrDefault());
 
-    public static FluentLayout AtLeftOf(this UIView view, UIView parentView, nfloat? margin = null) =>
-        view.Left().EqualTo().LeftOf(parentView).Plus(margin.GetValueOrDefault());
-
     public static FluentLayout AtLeftOfSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
         view.Left().EqualTo().LeftOf(parentView.SafeAreaLayoutGuide).Plus(margin.GetValueOrDefault());
 
-    public static FluentLayout AtRightOf(this UIView view, UIView parentView, nfloat? margin = null) =>
-        view.Right().EqualTo().RightOf(parentView).Minus(margin.GetValueOrDefault());
-
     public static FluentLayout AtRightOfSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
         view.Right().EqualTo().RightOf(parentView.SafeAreaLayoutGuide).Minus(margin.GetValueOrDefault());
-
-    public static FluentLayout AtBottomOf(this UIView view, UIView parentView, nfloat? margin = null) =>
-        view.Bottom().EqualTo().BottomOf(parentView).Minus(margin.GetValueOrDefault());
 
     public static FluentLayout AtBottomOfSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
         view.Bottom().EqualTo().BottomOf(parentView.SafeAreaLayoutGuide).Minus(margin.GetValueOrDefault());
 
     public static FluentLayout AtLeadingOf(this UIView view, UIView parentView, nfloat? margin = null) =>
-    view.Leading().EqualTo().LeadingOf(parentView).Plus(margin.GetValueOrDefault());
+        view.Leading().EqualTo().LeadingOf(parentView).Plus(margin.GetValueOrDefault());
 
     public static FluentLayout AtTrailingOf(this UIView view, UIView parentView, nfloat? margin = null) =>
-    view.Trailing().EqualTo().TrailingOf(parentView).Minus(margin.GetValueOrDefault());
+        view.Trailing().EqualTo().TrailingOf(parentView).Minus(margin.GetValueOrDefault());
 
-    public static FluentLayout Below(this UIView view, UIView previous, nfloat? margin = null) =>
-        view.Top().EqualTo().BottomOf(previous).Plus(margin.GetValueOrDefault());
+    public static FluentLayout Below(this UIView view, UIView previous, nfloat? margin = null)
+        => view.Top().EqualTo().BottomOf(previous).Plus(margin.GetValueOrDefault());
 
-    public static FluentLayout Above(this UIView view, UIView previous, nfloat? margin = null) =>
-        view.Bottom().EqualTo().TopOf(previous).Minus(margin.GetValueOrDefault());
+    public static FluentLayout Above(this UIView view, UIView previous, nfloat? margin = null)
+        => view.Bottom().EqualTo().TopOf(previous).Minus(margin.GetValueOrDefault());
 
-    public static FluentLayout WithSameLeft(this UIView view, UIView previous) => view.Left().EqualTo().LeftOf(previous);
+    public static FluentLayout WithSameTop(this UIView view, UIView previous, nfloat? margin = null)
+        => view.Top().EqualTo().TopOf(previous).Plus(margin.GetValueOrDefault());
 
-    public static FluentLayout WithSameTop(this UIView view, UIView previous) => view.Top().EqualTo().TopOf(previous);
+    public static FluentLayout WithSameLeft(this UIView view, UIView previous, nfloat? margin = null)
+        => view.Left().EqualTo().LeftOf(previous).Plus(margin.GetValueOrDefault());
+
+    public static FluentLayout WithSameRight(this UIView view, UIView previous, nfloat? margin = null)
+        => view.Right().EqualTo().RightOf(previous).Minus(margin.GetValueOrDefault());
+
+    public static FluentLayout WithSameBottom(this UIView view, UIView previous, nfloat? margin = null)
+        => view.Bottom().EqualTo().BottomOf(previous).Minus(margin.GetValueOrDefault());
 
     public static FluentLayout WithSameCenterX(this UIView view, UIView previous) => view.CenterX().EqualTo().CenterXOf(previous);
 
     public static FluentLayout WithSameCenterY(this UIView view, UIView previous) => view.CenterY().EqualTo().CenterYOf(previous);
 
-    public static FluentLayout WithSameRight(this UIView view, UIView previous) => view.Right().EqualTo().RightOf(previous);
-
     public static FluentLayout WithSameWidth(this UIView view, UIView previous) => view.Width().EqualTo().WidthOf(previous);
-
-    public static FluentLayout WithSameBottom(this UIView view, UIView previous) => view.Bottom().EqualTo().BottomOf(previous);
 
     public static FluentLayout WithSameLeading(this UIView view, UIView previous) => view.Leading().EqualTo().LeadingOf(previous);
 
@@ -114,8 +122,8 @@ public static class AdvancedFluentLayoutExtensions
         var marginValue = margin.GetValueOrDefault();
         return new List<FluentLayout>
         {
-            view.AtLeftOf(parent, marginValue).WithIdentifier("Left"),
-            view.AtRightOf(parent, marginValue).WithIdentifier("Right")
+            view.WithSameLeft(parent, marginValue).WithIdentifier("Left"),
+            view.WithSameRight(parent, marginValue).WithIdentifier("Right")
         };
     }
 
@@ -124,8 +132,8 @@ public static class AdvancedFluentLayoutExtensions
         var marginValue = margin.GetValueOrDefault();
         return new List<FluentLayout>
         {
-            view.AtTopOf(parent, marginValue).WithIdentifier("Top"),
-            view.AtBottomOf(parent, marginValue).WithIdentifier("Bottom")
+            view.WithSameTop(parent, marginValue).WithIdentifier("Top"),
+            view.WithSameBottom(parent, marginValue).WithIdentifier("Bottom")
         };
     }
 
@@ -137,10 +145,10 @@ public static class AdvancedFluentLayoutExtensions
         margins ??= new Margins();
         return new List<FluentLayout>
         {
-            view.AtTopOf(parent, margins.Top).WithIdentifier("Top"),
-            view.AtBottomOf(parent, margins.Bottom).WithIdentifier("Bottom"),
-            view.AtLeftOf(parent, margins.Left).WithIdentifier("Left"),
-            view.AtRightOf(parent, margins.Right).WithIdentifier("Right")
+            view.WithSameTop(parent, margins.Top).WithIdentifier("Top"),
+            view.WithSameBottom(parent, margins.Bottom).WithIdentifier("Bottom"),
+            view.WithSameLeft(parent, margins.Left).WithIdentifier("Left"),
+            view.WithSameRight(parent, margins.Right).WithIdentifier("Right")
         };
     }
 

@@ -19,8 +19,10 @@ public static class UiViewExtensions
     public static T NoBackgroundColor<T>(this T view) where T : UIView
         => view.SetBackgroundColor(default);
 
+#if IOS || MACCATALYST
     public static T SetSystemBackgroundColor<T>(this T view) where T : UIView
         => view.SetBackgroundColor(UIColor.SystemBackground);
+#endif
 
     public static T SetOpaque<T>(this T view, bool value = true) where T : UIView
     {
@@ -41,6 +43,7 @@ public static class UiViewExtensions
         return view;
     }
 
+#if IOS || MACCATALYST
     public static T SetMultipleTouch<T>(this T view, bool value = true) where T : UIView
     {
         view.MultipleTouchEnabled = value;
@@ -52,6 +55,7 @@ public static class UiViewExtensions
         collectionView.ExclusiveTouch = value;
         return collectionView;
     }
+#endif
 
     public static T SetLayoutMargins<T>(this T view, UIEdgeInsets value) where T : UIView
     {
