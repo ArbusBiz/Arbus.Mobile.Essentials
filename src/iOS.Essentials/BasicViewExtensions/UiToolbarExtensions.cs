@@ -1,7 +1,5 @@
 ﻿namespace Arbus.iOS.Essentials.BasicViewExtensions;
 
-#if IOS || MACCATALYST
-
 public static class UiToolbarExtensions
 {
     public static T SetItemsAnimated<T>(this T toolbar, params UIBarButtonItem[] items) where T : UIToolbar
@@ -16,5 +14,3 @@ public static class UiToolbarExtensions
         return toolbar;
     }
 }
-
-#endif

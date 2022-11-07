@@ -1,6 +1,5 @@
 namespace Arbus.iOS.Essentials.BasicViewExtensions;
 
-#if IOS || MACCATALYST
 public static class UIContextualActionExtensions
 {
     public static UIContextualAction SetImage(this UIContextualAction action, UIImage? image)
@@ -15,4 +14,3 @@ public static class UIContextualActionExtensions
         return action;
     }
 }
-#endif

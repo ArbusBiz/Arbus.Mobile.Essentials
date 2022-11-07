@@ -50,13 +50,11 @@ public static class UiCollectionViewExtensions
         return collectionView;
     }
 
-#if IOS || MACCATALYST
     public static UICollectionView RefreshControl(this UICollectionView collectionView, UIRefreshControl? refreshControl)
     {
         collectionView.RefreshControl = refreshControl;
         return collectionView;
     }
-#endif
 
     public static UICollectionView KeyboardDismissMode(this UICollectionView collectionView, UIScrollViewKeyboardDismissMode value)
     {

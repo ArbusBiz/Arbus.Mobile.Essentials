@@ -26,11 +26,9 @@ public static class UiNavigationItemExtensions
         return navigationItem;
     }
 
-#if IOS || MACCATALYST
     public static UINavigationItem HideBackButton(this UINavigationItem navigationItem)
     {
         navigationItem.HidesBackButton = true;
         return navigationItem;
     }
-#endif
 }
