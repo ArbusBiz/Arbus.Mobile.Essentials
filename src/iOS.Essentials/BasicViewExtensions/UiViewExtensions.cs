@@ -2,8 +2,12 @@ using CoreAnimation;
 
 namespace Arbus.iOS.Essentials.BasicViewExtensions;
 
-public static class UiViewExtensions
+public static class UIViewExtensions
 {
+    private const int
+        _lowestPriority = 1,
+        _highestPriority = 1_000;
+
     public static T SetFrame<T>(this T view, CGRect frame) where T : UIView
     {
         view.Frame = frame;
@@ -103,6 +107,21 @@ public static class UiViewExtensions
         return uiView;
     }
 
+    public static T RoundAllCorners<T>(this T view, float cornerRadius) where T : UIView
+    {
+        var corners = CACornerMask.MinXMinYCorner | CACornerMask.MaxXMinYCorner | CACornerMask.MinXMaxYCorner | CACornerMask.MaxXMaxYCorner;
+        return view.RoundCorners(cornerRadius, corners);
+    }
+
+    public static T RoundCorners<T>(this T view, float cornerRadius, CACornerMask? corners = null) where T : UIView
+    {
+        view.Layer.CornerRadius = cornerRadius;
+        view.Layer.MasksToBounds = true;
+        if (corners != null)
+            view.Layer.MaskedCorners = corners.Value;
+        return view;
+    }
+
     public static T ClipToBounds<T>(this T button, bool value = true) where T : UIView
     {
         button.ClipsToBounds = value;
@@ -162,18 +181,43 @@ public static class UiViewExtensions
     public static T ClearBackgroundColor<T>(this T view) where T : UIView
         => view.SetBackgroundColor(UIColor.Clear);
 
-    public static T RoundAllCorners<T>(this T view, float cornerRadius) where T : UIView
+    public static T SetHighestContentPriority<T>(this T view, UILayoutConstraintAxis axis) where T : UIView
     {
-        var corners = CACornerMask.MinXMinYCorner | CACornerMask.MaxXMinYCorner | CACornerMask.MinXMaxYCorner | CACornerMask.MaxXMaxYCorner;
-        return view.RoundCorners(cornerRadius, corners);
+        view
+            .SetHighestContentCompressionResistancePriority(axis)
+            .SetHighestContentHuggingPriority(axis);
+        return view;
     }
 
-    public static T RoundCorners<T>(this T view, float cornerRadius, CACornerMask? corners = null) where T : UIView
+    public static T SetLowestContentPriority<T>(this T view, UILayoutConstraintAxis axis) where T : UIView
     {
-        view.Layer.CornerRadius = cornerRadius;
-        view.Layer.MasksToBounds = true;
-        if (corners != null)
-            view.Layer.MaskedCorners = corners.Value;
+        view
+            .SetLowestContentCompressionResistancePriority(axis)
+            .SetLowestContentHuggingPriority(axis);
+        return view;
+    }
+
+    public static T SetHighestContentCompressionResistancePriority<T>(this T view, UILayoutConstraintAxis axis) where T : UIView
+    {
+        view.SetContentCompressionResistancePriority(_highestPriority, axis);
+        return view;
+    }
+
+    public static T SetHighestContentHuggingPriority<T>(this T view, UILayoutConstraintAxis axis) where T : UIView
+    {
+        view.SetContentHuggingPriority(_highestPriority, axis);
+        return view;
+    }
+
+    public static T SetLowestContentCompressionResistancePriority<T>(this T view, UILayoutConstraintAxis axis) where T : UIView
+    {
+        view.SetContentCompressionResistancePriority(_lowestPriority, axis);
+        return view;
+    }
+
+    public static T SetLowestContentHuggingPriority<T>(this T view, UILayoutConstraintAxis axis) where T : UIView
+    {
+        view.SetContentHuggingPriority(_lowestPriority, axis);
         return view;
     }
 }

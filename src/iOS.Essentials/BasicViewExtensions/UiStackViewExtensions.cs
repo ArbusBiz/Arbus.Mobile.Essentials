@@ -1,6 +1,6 @@
 ﻿namespace Arbus.iOS.Essentials.BasicViewExtensions;
 
-public static class UiStackViewExtensions
+public static class UIStackViewExtensions
 {
     public static UIStackView AddArrangedSubviews(this UIStackView stackView, params UIView[] subviews)
     {
@@ -43,5 +43,16 @@ public static class UiStackViewExtensions
     {
         stackView.Alignment = alignment;
         return stackView;
+    }
+
+    public static T SetSubviewsLowestContentPriority<T>(this T view, UILayoutConstraintAxis axis) where T : UIStackView
+    {
+        foreach (var subview in view.Subviews)
+        {
+            subview
+                .SetLowestContentCompressionResistancePriority(axis)
+                .SetLowestContentHuggingPriority(axis);
+        }
+        return view;
     }
 }

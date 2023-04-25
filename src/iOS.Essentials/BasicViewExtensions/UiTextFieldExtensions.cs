@@ -1,6 +1,6 @@
 ﻿namespace Arbus.iOS.Essentials.BasicViewExtensions;
 
-public static class UiTextFieldExtensions
+public static class UITextFieldExtensions
 {
     public static UITextField SetDelegate(this UITextField textField, IUITextFieldDelegate textFieldDelegate)
     {

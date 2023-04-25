@@ -1,6 +1,6 @@
 ﻿namespace Arbus.iOS.Essentials.BasicViewExtensions;
 
-public static class UiCollectionViewExtensions
+public static class UICollectionViewExtensions
 {
     public static UICollectionView SetSource(this UICollectionView collectionView, Func<UICollectionView, UICollectionViewSource> sourceFactory)
     {
@@ -77,6 +77,13 @@ public static class UiCollectionViewExtensions
     public static UICollectionView DontShowScrollIndicators(this UICollectionView collectionView)
     {
         collectionView.ShowsVerticalScrollIndicator = collectionView.ShowsHorizontalScrollIndicator = false;
+        return collectionView;
+    }
+
+    public static UICollectionView SetKeyboardDismissMode(this UICollectionView collectionView,
+        UIScrollViewKeyboardDismissMode mode)
+    {
+        collectionView.KeyboardDismissMode = mode;
         return collectionView;
     }
 }

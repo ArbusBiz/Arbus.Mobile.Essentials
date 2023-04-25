@@ -11,24 +11,24 @@ public sealed class SfSymbol
         _fromBundle = fromBundle;
     }
 
-    public UIImage ToUiImage(UIImageSymbolConfiguration? configuration = default)
+    public UIImage ToUIImage(UIImageSymbolConfiguration? configuration = default)
     {
         return _fromBundle
             ? UIImage.FromBundle(_imageName, default, configuration)!
             : UIImage.GetSystemImage(_imageName, configuration)!;
     }
 
-    public UIImage ToUiImage(UIImageSymbolWeight symbolWeight)
-        => ToUiImage(UIImageSymbolConfiguration.Create(symbolWeight));
+    public UIImage ToUIImage(UIImageSymbolWeight symbolWeight)
+        => ToUIImage(UIImageSymbolConfiguration.Create(symbolWeight));
 
-    public UIImage ToUiImage(UIFont uiFont)
-        => ToUiImage(UIImageSymbolConfiguration.Create(uiFont));
+    public UIImage ToUIImage(UIFont uiFont)
+        => ToUIImage(UIImageSymbolConfiguration.Create(uiFont));
 
-    public UIImage ToUiImage(UIImageSymbolScale symbolScale)
-        => ToUiImage(UIImageSymbolConfiguration.Create(symbolScale));
+    public UIImage ToUIImage(UIImageSymbolScale symbolScale)
+        => ToUIImage(UIImageSymbolConfiguration.Create(symbolScale));
 
-    public UIBarButtonItem ToUiBarButton(Action onClick)
-        => new(ToUiImage(), UIBarButtonItemStyle.Plain, (_, _) => onClick());
+    public UIBarButtonItem ToUIBarButton(Action onClick)
+        => new(ToUIImage(), UIBarButtonItemStyle.Plain, (_, _) => onClick());
 
-    public static implicit operator UIImage?(SfSymbol? sfSymbol) => sfSymbol?.ToUiImage();
+    public static implicit operator UIImage?(SfSymbol? sfSymbol) => sfSymbol?.ToUIImage();
 }

@@ -1,6 +1,6 @@
 ﻿namespace Arbus.iOS.Essentials.BasicViewExtensions;
 
-public static class UiNavigationItemExtensions
+public static class UINavigationItemExtensions
 {
     public static UINavigationItem SetTitle(this UINavigationItem navigationItem, string? title)
     {

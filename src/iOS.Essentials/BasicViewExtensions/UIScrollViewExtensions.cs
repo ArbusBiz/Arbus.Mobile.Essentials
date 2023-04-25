@@ -1,6 +1,6 @@
 ﻿namespace Arbus.iOS.Essentials.BasicViewExtensions;
 
-public static class UiScrollViewExntensions
+public static class UIScrollViewExtensions
 {
     public static T ContentInset<T>(this T view, UIEdgeInsets value) where T : UIScrollView
     {

@@ -1,9 +1,14 @@
 ﻿namespace Arbus.iOS.Essentials.BasicViewExtensions;
 
-public static class UiImageViewExtensions
+public static class UIImageViewExtensions
 {
+    public static T Image<T>(this T view, string bundleName) where T : UIImageView
+    {
+        return view.Image(UIImage.FromBundle(bundleName));
+    }
+
     public static T Image<T>(this T view, SfSymbol systemImage, UIImageSymbolConfiguration? configuration = default) where T : UIImageView
-        => view.Image(systemImage.ToUiImage(configuration));
+        => view.Image(systemImage.ToUIImage(configuration));
 
     public static T Image<T>(this T view, UIImage? uIImage) where T : UIImageView
     {

@@ -1,6 +1,6 @@
 ﻿namespace Arbus.iOS.Essentials.BasicViewExtensions;
 
-public static class UiTableViewExtensions
+public static class UITableViewExtensions
 {
     public static T SetSource<T>(this T tableView, Func<T, UITableViewSource> sourceFactory) where T : UITableView
     {
@@ -85,9 +85,8 @@ public static class UiTableViewExtensions
         return tableView;
     }
 
-    public static T? GetCellAt<T>(this UITableView tableView, NSIndexPath indexPath) where T : UITableViewCell
+    public static T? CellAt<T>(this UITableView tableView, NSIndexPath indexPath) where T : UITableViewCell
     {
-        var cell = tableView.CellAt(indexPath);
-        return cell is not null ? (T)cell : null;
+        return (T?)tableView.CellAt(indexPath);
     }
 }

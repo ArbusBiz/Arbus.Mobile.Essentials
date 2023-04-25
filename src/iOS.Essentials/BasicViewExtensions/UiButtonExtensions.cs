@@ -1,6 +1,8 @@
-﻿namespace Arbus.iOS.Essentials.BasicViewExtensions;
+﻿using System.Runtime.Versioning;
 
-public static class UiButtonExtensions
+namespace Arbus.iOS.Essentials.BasicViewExtensions;
+
+public static class UIButtonExtensions
 {
     public static T SetImage<T>(this T button, UIImage? image, UIControlState forState = UIControlState.Normal) where T : UIButton
     {
@@ -9,10 +11,10 @@ public static class UiButtonExtensions
     }
 
     public static T SetImage<T>(this T button, SfSymbol sfSymbol, UIImageSymbolConfiguration? configuration = default, UIControlState forState = UIControlState.Normal) where T : UIButton
-        => SetImage(button, sfSymbol.ToUiImage(configuration), forState);
+        => SetImage(button, sfSymbol.ToUIImage(configuration), forState);
 
     public static T SetImage<T>(this T button, SfSymbol sfSymbol, UIImageSymbolWeight weight, UIControlState forState = UIControlState.Normal) where T : UIButton
-        => SetImage(button, sfSymbol.ToUiImage(weight), forState);
+        => SetImage(button, sfSymbol.ToUIImage(weight), forState);
 
     public static T SetTitle<T>(this T button, string title, UIControlState forState = UIControlState.Normal) where T : UIButton
     {
@@ -43,4 +45,14 @@ public static class UiButtonExtensions
 
     public static T SetFontAsBold<T>(this T textView, UIFontDescriptor font, nfloat pointOfSize = default) where T : UIButton
         => textView.SetFont(font, UIFontDescriptorSymbolicTraits.Bold, pointOfSize);
+
+    [SupportedOSPlatform("ios14.0")]
+    public static T MakeMenuButton<T>(this T button, UIMenu? menu = default) where T : UIButton
+    {
+        menu ??= UIMenu.Create(Array.Empty<UIMenuElement>()); //Set a placeholder menu. The menu won't show if UIButton.Menu is null;
+
+        button.ShowsMenuAsPrimaryAction = true;
+        button.Menu = menu;
+        return button;
+    }
 }

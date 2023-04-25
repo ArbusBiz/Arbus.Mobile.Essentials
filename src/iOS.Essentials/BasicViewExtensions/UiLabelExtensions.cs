@@ -1,6 +1,8 @@
-﻿namespace Arbus.iOS.Essentials.BasicViewExtensions;
+﻿using System.Runtime.Versioning;
 
-public static class UiLabelExtensions
+namespace Arbus.iOS.Essentials.BasicViewExtensions;
+
+public static class UILabelExtensions
 {
     public static T SetText<T>(this T textView, string? value) where T : UILabel
     {
@@ -41,6 +43,13 @@ public static class UiLabelExtensions
     public static T AdjustFontSizeToFitWidth<T>(this T textView, bool value = true) where T : UILabel
     {
         textView.AdjustsFontSizeToFitWidth = value;
+        return textView;
+    }
+
+    [UnsupportedOSPlatform("maccatalyst6.0")]
+    public static T SetMinimumFontSize<T>(this T textView, float minimumFontSize) where T : UILabel
+    {
+        textView.MinimumFontSize = minimumFontSize;
         return textView;
     }
 

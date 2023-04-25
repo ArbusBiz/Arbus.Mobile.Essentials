@@ -1,6 +1,6 @@
 ﻿namespace Arbus.iOS.Essentials.BasicViewExtensions;
 
-public static class UiToolbarExtensions
+public static class UIToolbarExtensions
 {
     public static T SetItemsAnimated<T>(this T toolbar, params UIBarButtonItem[] items) where T : UIToolbar
     {
