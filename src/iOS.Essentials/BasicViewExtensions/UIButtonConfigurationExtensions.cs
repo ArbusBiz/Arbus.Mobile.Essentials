@@ -35,7 +35,7 @@ public static class UIButtonConfigurationExtensions
         return configuration;
     }
 
-    public static UIButtonConfiguration MakeOutlined(this UIButtonConfiguration configuration, UIColor strokeColor, int strokeWidth, float cornerRadius)
+    public static UIButtonConfiguration MakeOutlined(this UIButtonConfiguration configuration, UIColor strokeColor, nfloat strokeWidth, nfloat cornerRadius)
     {
         configuration.Background.StrokeWidth = strokeWidth;
         configuration.Background.StrokeColor = strokeColor;

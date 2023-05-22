@@ -5,6 +5,8 @@
 // 
 // Project Lead - Stuart Lodge, @slodge, me@slodge.com
 
+using ObjCRuntime;
+
 namespace Arbus.iOS.Essentials.AutoLayout;
 
 public static class AdvancedFluentLayoutExtensions
@@ -138,7 +140,7 @@ public static class AdvancedFluentLayoutExtensions
     }
 
     public static IEnumerable<FluentLayout> FullSizeOf(this UIView view, UIView parent, nfloat? margin = null) =>
-        view.FullSizeOf(parent, new Margins((float)margin.GetValueOrDefault()));
+        view.FullSizeOf(parent, new Margins(margin.GetValueOrDefault()));
 
     public static IEnumerable<FluentLayout> FullSizeOf(this UIView view, UIView parent, Margins margins)
     {
@@ -164,32 +166,32 @@ public static class AdvancedFluentLayoutExtensions
     public static IEnumerable<FluentLayout> AdvancedVerticalStackPanelConstraints(
       this UIView parentView,
       Margins margins,
-      float[]? childrenLeftMargins = null,
-      float[]? childrenTopMargins = null,
-      float[]? childrenRightMargins = null,
+      nfloat[]? childrenLeftMargins = null,
+      nfloat[]? childrenTopMargins = null,
+      nfloat[]? childrenRightMargins = null,
       float marginMultiplier = 1f,
       params UIView[] views)
     {
         string str1 = default!;
-        margins = margins ?? new Margins();
+        margins ??= new Margins();
         List<FluentLayout> fluentLayoutList = new List<FluentLayout>();
         int length = views.Length;
         for (int index = 0; index < length; ++index)
         {
             UIView view = views[index];
             string str2 = string.Format("{0}-{1}-", parentView.AccessibilityIdentifier ?? "VerticalStackPanel", view.AccessibilityIdentifier ?? index.ToString());
-            float element1 = childrenLeftMargins?.ElementAtOrDefault(index) ?? default;
-            float constant = Math.Max(margins.Left, element1) * marginMultiplier;
+            nfloat element1 = childrenLeftMargins?.ElementAtOrDefault(index) ?? default;
+            nfloat constant = NMath.Max(margins.Left, element1) * marginMultiplier;
             fluentLayoutList.Add(view.Left().EqualTo().LeftOf(parentView).Plus((nfloat)constant).WithIdentifier(str2 + "Left"));
-            float element2 = childrenRightMargins?.ElementAtOrDefault(index) ?? default;
-            float num = Math.Max(margins.Right, element2) * marginMultiplier;
+            nfloat element2 = childrenRightMargins?.ElementAtOrDefault(index) ?? default;
+            nfloat num = NMath.Max(margins.Right, element2) * marginMultiplier;
             fluentLayoutList.Add(view.Width().EqualTo().WidthOf(parentView).Minus((nfloat)(num + constant)).WithIdentifier(str2 + "Width"));
-            float element3 = childrenTopMargins?.ElementAtOrDefault(index) ?? default;
+            nfloat element3 = childrenTopMargins?.ElementAtOrDefault(index) ?? default;
             fluentLayoutList.Add(index == 0 ? view.Top().EqualTo().TopOf(parentView).Plus((nfloat)(Math.Max(margins.Top, element3) * marginMultiplier)).WithIdentifier(str2 + "Top") : view.Top().EqualTo().BottomOf(views[index - 1]).Plus((nfloat)(Math.Max(margins.VSpacing, element3) * marginMultiplier)).WithIdentifier(str2 + "Top"));
             str1 = str2;
         }
         if (parentView is UIScrollView)
-            fluentLayoutList.Add(views[views.Length - 1].Bottom().EqualTo().BottomOf(parentView).Minus((nfloat)(margins.Bottom * marginMultiplier)).WithIdentifier(str1 + "Bottom"));
+            fluentLayoutList.Add(views[^1].Bottom().EqualTo().BottomOf(parentView).Minus((nfloat)(margins.Bottom * marginMultiplier)).WithIdentifier(str1 + "Bottom"));
         return fluentLayoutList;
     }
 }

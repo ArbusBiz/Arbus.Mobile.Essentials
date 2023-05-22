@@ -107,13 +107,13 @@ public static class UIViewExtensions
         return uiView;
     }
 
-    public static T RoundAllCorners<T>(this T view, float cornerRadius) where T : UIView
+    public static T RoundAllCorners<T>(this T view, nfloat cornerRadius) where T : UIView
     {
         var corners = CACornerMask.MinXMinYCorner | CACornerMask.MaxXMinYCorner | CACornerMask.MinXMaxYCorner | CACornerMask.MaxXMaxYCorner;
         return view.RoundCorners(cornerRadius, corners);
     }
 
-    public static T RoundCorners<T>(this T view, float cornerRadius, CACornerMask? corners = null) where T : UIView
+    public static T RoundCorners<T>(this T view, nfloat cornerRadius, CACornerMask? corners = null) where T : UIView
     {
         view.Layer.CornerRadius = cornerRadius;
         view.Layer.MasksToBounds = true;

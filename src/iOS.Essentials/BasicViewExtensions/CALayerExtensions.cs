@@ -10,26 +10,25 @@ public static class CALayerExtensions
         return layer;
     }
 
-    public static CALayer CornerRadius(this CALayer layer, nfloat value)
+    public static CALayer SetCornerRadius(this CALayer layer, nfloat value)
     {
         layer.CornerRadius = value;
         return layer;
     }
 
-    public static CALayer ShadowRadius(this CALayer layer, nfloat value)
+    public static CALayer SetShadowRadius(this CALayer layer, nfloat value)
     {
         layer.ShadowRadius = value;
         return layer;
     }
 
-    public static CALayer ShadowOpacity(this CALayer layer, float value)
+    public static CALayer SetShadowOpacity(this CALayer layer, float value)
     {
         layer.ShadowOpacity = value;
         return layer;
     }
 
-
-    public static CALayer ShadowOffset(this CALayer layer, double width, double height)
+    public static CALayer SetShadowOffset(this CALayer layer, double width, double height)
     {
         layer.ShadowOffset = new CGSize(width, height);
         return layer;

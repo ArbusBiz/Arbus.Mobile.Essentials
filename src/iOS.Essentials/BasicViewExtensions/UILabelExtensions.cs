@@ -47,7 +47,7 @@ public static class UILabelExtensions
     }
 
     [UnsupportedOSPlatform("maccatalyst6.0")]
-    public static T SetMinimumFontSize<T>(this T textView, float minimumFontSize) where T : UILabel
+    public static T SetMinimumFontSize<T>(this T textView, nfloat minimumFontSize) where T : UILabel
     {
         textView.MinimumFontSize = minimumFontSize;
         return textView;

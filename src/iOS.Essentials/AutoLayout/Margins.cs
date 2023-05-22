@@ -9,23 +9,23 @@ namespace Arbus.iOS.Essentials.AutoLayout;
 
 public class Margins
 {
-    public float Top { get; set; }
+    public nfloat Top { get; set; }
 
-    public float Bottom { get; set; }
+    public nfloat Bottom { get; set; }
 
-    public float Left { get; set; }
+    public nfloat Left { get; set; }
 
-    public float Right { get; set; }
+    public nfloat Right { get; set; }
 
-    public float VSpacing { get; set; }
+    public nfloat VSpacing { get; set; }
 
-    public float HSpacing { get; set; }
+    public nfloat HSpacing { get; set; }
 
     public Margins()
     {
     }
 
-    public Margins(float all)
+    public Margins(nfloat all)
     {
         Top = all;
         Bottom = all;
@@ -35,7 +35,7 @@ public class Margins
         HSpacing = all;
     }
 
-    public Margins(float allHorizontal, float allVertical)
+    public Margins(nfloat allHorizontal, nfloat allVertical)
     {
         Top = allVertical;
         Bottom = allVertical;
@@ -45,7 +45,7 @@ public class Margins
         HSpacing = allHorizontal;
     }
 
-    public Margins(float left, float top, float right, float bottom, float hspacing = 0, float vspacing = 0)
+    public Margins(nfloat left, nfloat top, nfloat right, nfloat bottom, float hspacing = 0, float vspacing = 0)
     {
         Top = top;
         Bottom = bottom;

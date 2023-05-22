@@ -2,7 +2,7 @@
 
 public static class UIScrollViewExtensions
 {
-    public static T ContentInset<T>(this T view, UIEdgeInsets value) where T : UIScrollView
+    public static T SetContentInset<T>(this T view, UIEdgeInsets value) where T : UIScrollView
     {
         view.ContentInset = value;
         return view;

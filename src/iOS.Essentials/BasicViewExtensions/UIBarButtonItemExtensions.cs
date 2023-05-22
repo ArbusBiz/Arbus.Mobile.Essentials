@@ -4,7 +4,7 @@ namespace Arbus.iOS.Essentials.BasicViewExtensions;
 
 public static class UIBarButtonItemExtensions
 {
-    public static T AccessibilityIdentifier<T>(this T view, string? identifier) where T : UIBarItem
+    public static T SetAccessibilityIdentifier<T>(this T view, string? identifier) where T : UIBarItem
     {
         view.AccessibilityIdentifier = identifier;
         return view;
