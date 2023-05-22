@@ -89,4 +89,10 @@ public static class UITableViewExtensions
     {
         return (T?)tableView.CellAt(indexPath);
     }
+
+    public static T RequiredCellAt<T>(this UITableView tableView, NSIndexPath indexPath) where T : UITableViewCell
+    {
+        return tableView.CellAt<T>(indexPath) ?? throw new Exception(
+                $"No cell exists at section '{indexPath.Section}' and row '{indexPath.Row}'.");
+    }
 }
