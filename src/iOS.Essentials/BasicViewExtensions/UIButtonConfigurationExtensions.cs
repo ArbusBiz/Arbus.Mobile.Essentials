@@ -50,6 +50,12 @@ public static class UIButtonConfigurationExtensions
         return configuration;
     }
 
+    public static UIButtonConfiguration RoundCorners(this UIButtonConfiguration configuration, int cornerRadius)
+    {
+        configuration.Background.CornerRadius = cornerRadius;
+        return configuration;
+    }
+
     public static UIButton ToUIButton(this UIButtonConfiguration configuration) => new()
     {
         Configuration = configuration
