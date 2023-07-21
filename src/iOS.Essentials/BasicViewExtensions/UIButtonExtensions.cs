@@ -55,4 +55,12 @@ public static class UIButtonExtensions
         button.Menu = menu;
         return button;
     }
+
+    [SupportedOSPlatform("ios14.0")]
+    public static T MakeMenuButton<T>(this T button, Func<UIMenu> menu) where T : UIButton
+    {
+        button.ShowsMenuAsPrimaryAction = true;
+        button.AddAction(() => button.Menu = menu(), UIControlEvent.MenuActionTriggered);
+        return button;
+    }
 }
