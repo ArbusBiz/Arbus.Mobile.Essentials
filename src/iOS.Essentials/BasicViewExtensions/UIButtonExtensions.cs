@@ -50,7 +50,7 @@ public static class UIButtonExtensions
     public static T MakeMenuButton<T>(this T button, Func<UIMenu> getMenu) where T : UIButton
     {
         // Set a placeholder menu. The menu won't show if UIButton.Menu is null;
-        button.Menu ??= UIMenu.Create(Array.Empty<UIMenuElement>());
+        button.Menu = UIMenu.Create(Array.Empty<UIMenuElement>());
         button.ShowsMenuAsPrimaryAction = true;
 
         return button.AddAction(
