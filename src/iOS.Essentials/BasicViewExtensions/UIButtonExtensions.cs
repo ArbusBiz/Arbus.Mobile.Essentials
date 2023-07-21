@@ -47,20 +47,20 @@ public static class UIButtonExtensions
         => textView.SetFont(font, UIFontDescriptorSymbolicTraits.Bold, pointOfSize);
 
     [SupportedOSPlatform("ios14.0")]
-    public static T MakeMenuButton<T>(this T button, UIMenu? menu = default) where T : UIButton
+    public static T MakeMenuButton<T>(this T button, Func<UIMenu> getMenu) where T : UIButton
     {
-        menu ??= UIMenu.Create(Array.Empty<UIMenuElement>()); //Set a placeholder menu. The menu won't show if UIButton.Menu is null;
-
-        button.ShowsMenuAsPrimaryAction = true;
-        button.Menu = menu;
-        return button;
+        return button
+            .MakeMenuButton()
+            .AddAction(() => button.Menu = getMenu(), UIControlEvent.MenuActionTriggered);
     }
 
     [SupportedOSPlatform("ios14.0")]
-    public static T MakeMenuButton<T>(this T button, Func<UIMenu> menu) where T : UIButton
+    public static T MakeMenuButton<T>(this T button, UIMenu? menu = default) where T : UIButton
     {
+        menu ??= UIMenu.Create(Array.Empty<UIMenuElement>()); // Set a placeholder menu. The menu won't show if UIButton.Menu is null;
+
         button.ShowsMenuAsPrimaryAction = true;
-        button.AddAction(() => button.Menu = menu(), UIControlEvent.MenuActionTriggered);
+        button.Menu = menu;
         return button;
     }
 }
