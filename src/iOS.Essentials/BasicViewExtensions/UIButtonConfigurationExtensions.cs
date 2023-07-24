@@ -22,7 +22,7 @@ public static class UIButtonConfigurationExtensions
         configuration.BaseBackgroundColor = color;
         return configuration;
     }
-    
+
     public static UIButtonConfiguration SetBaseForegroundColor(this UIButtonConfiguration configuration, UIColor? color)
     {
         configuration.BaseForegroundColor = color;
@@ -53,6 +53,18 @@ public static class UIButtonConfigurationExtensions
     public static UIButtonConfiguration RoundCorners(this UIButtonConfiguration configuration, int cornerRadius)
     {
         configuration.Background.CornerRadius = cornerRadius;
+        return configuration;
+    }
+
+    public static UIButtonConfiguration SetCornerStyle(this UIButtonConfiguration configuration, UIButtonConfigurationCornerStyle cornerStyle)
+    {
+        configuration.CornerStyle = cornerStyle;
+        return configuration;
+    }
+
+    public static UIButtonConfiguration SetContentInsets(this UIButtonConfiguration configuration, NSDirectionalEdgeInsets contentInsets)
+    {
+        configuration.ContentInsets = contentInsets;
         return configuration;
     }
 
