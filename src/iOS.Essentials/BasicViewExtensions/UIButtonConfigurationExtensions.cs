@@ -35,6 +35,12 @@ public static class UIButtonConfigurationExtensions
         return configuration;
     }
 
+    public static UIButtonConfiguration SetImage(this UIButtonConfiguration configuration, SfSymbol systemImage, UIImageSymbolConfiguration? symbolConfiguration = default)
+    {
+        return configuration.SetImage(
+            systemImage.ToUIImage(symbolConfiguration));
+    }
+
     public static UIButtonConfiguration MakeOutlined(this UIButtonConfiguration configuration, UIColor strokeColor, nfloat strokeWidth, nfloat cornerRadius)
     {
         configuration.Background.StrokeWidth = strokeWidth;
