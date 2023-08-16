@@ -53,32 +53,68 @@ public static class AdvancedFluentLayoutExtensions
     public static FluentLayout Above(this UIView view, UIView previous, nfloat? margin = null)
         => view.Bottom().EqualTo().TopOf(previous).Minus(margin.GetValueOrDefault());
 
+    public static FluentLayout WithParentTop(this UIView view, nfloat? margin = null)
+        => view.WithSameTop(view.Superview, margin);
+
     public static FluentLayout WithSameTop(this UIView view, UIView previous, nfloat? margin = null)
         => view.Top().EqualTo().TopOf(previous).Plus(margin.GetValueOrDefault());
+
+    public static FluentLayout WithParentLeft(this UIView view, nfloat? margin = null)
+        => view.WithSameLeft(view.Superview, margin);
 
     public static FluentLayout WithSameLeft(this UIView view, UIView previous, nfloat? margin = null)
         => view.Left().EqualTo().LeftOf(previous).Plus(margin.GetValueOrDefault());
 
+    public static FluentLayout WithParentRight(this UIView view, nfloat? margin = null)
+        => view.WithSameRight(view.Superview, margin);
+
     public static FluentLayout WithSameRight(this UIView view, UIView previous, nfloat? margin = null)
         => view.Right().EqualTo().RightOf(previous).Minus(margin.GetValueOrDefault());
+
+    public static FluentLayout WithParentBottom(this UIView view, nfloat? margin = null)
+        => view.WithSameBottom(view.Superview, margin);
 
     public static FluentLayout WithSameBottom(this UIView view, UIView previous, nfloat? margin = null)
         => view.Bottom().EqualTo().BottomOf(previous).Minus(margin.GetValueOrDefault());
 
-    public static FluentLayout WithSameCenterX(this UIView view, UIView previous) => view.CenterX().EqualTo().CenterXOf(previous);
+    public static FluentLayout WithParentCenterX(this UIView view)
+        => view.WithSameCenterX(view.Superview);
 
-    public static FluentLayout WithSameCenterY(this UIView view, UIView previous) => view.CenterY().EqualTo().CenterYOf(previous);
+    public static FluentLayout WithSameCenterX(this UIView view, UIView previous)
+        => view.CenterX().EqualTo().CenterXOf(previous);
 
-    public static FluentLayout WithSameWidth(this UIView view, UIView previous) => view.Width().EqualTo().WidthOf(previous);
+    public static FluentLayout WithParentCenterY(this UIView view)
+        => view.WithSameCenterY(view.Superview);
 
-    public static FluentLayout WithSameLeading(this UIView view, UIView previous) => view.Leading().EqualTo().LeadingOf(previous);
+    public static FluentLayout WithSameCenterY(this UIView view, UIView previous)
+        => view.CenterY().EqualTo().CenterYOf(previous);
 
-    public static FluentLayout WithSameTrailing(this UIView view, UIView previous) => view.Trailing().EqualTo().TrailingOf(previous);
+    public static FluentLayout WithParentLeading(this UIView view)
+        => view.WithSameLeading(view.Superview);
 
-    public static FluentLayout WithRelativeWidth(this UIView view, UIView previous, nfloat? scale = null) =>
-        view.Width().EqualTo().WidthOf(previous).WithMultiplier(scale.GetValueOrDefault(_defaultScale));
+    public static FluentLayout WithSameLeading(this UIView view, UIView previous)
+        => view.Leading().EqualTo().LeadingOf(previous);
 
-    public static FluentLayout WithSameHeight(this UIView view, UIView previous) => view.Height().EqualTo().HeightOf(previous);
+    public static FluentLayout WithParentTrailing(this UIView view)
+        => view.WithSameTrailing(view.Superview);
+
+    public static FluentLayout WithSameTrailing(this UIView view, UIView previous)
+        => view.Trailing().EqualTo().TrailingOf(previous);
+
+    public static FluentLayout WithParentWidth(this UIView view)
+        => view.WithSameWidth(view.Superview);
+
+    public static FluentLayout WithSameWidth(this UIView view, UIView previous)
+        => view.Width().EqualTo().WidthOf(previous);
+
+    public static FluentLayout WithRelativeWidth(this UIView view, UIView previous, nfloat? scale = null)
+        => view.Width().EqualTo().WidthOf(previous).WithMultiplier(scale.GetValueOrDefault(_defaultScale));
+
+    public static FluentLayout WithParentHeight(this UIView view)
+        => view.WithSameHeight(view.Superview);
+
+    public static FluentLayout WithSameHeight(this UIView view, UIView previous)
+        => view.Height().EqualTo().HeightOf(previous);
 
     public static FluentLayout WithRelativeHeight(this UIView view, UIView previous, nfloat? scale = null) =>
         view.Height().EqualTo().HeightOf(previous).WithMultiplier(scale.GetValueOrDefault(_defaultScale));
