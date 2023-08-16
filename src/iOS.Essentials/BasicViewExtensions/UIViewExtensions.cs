@@ -70,6 +70,9 @@ public static class UIViewExtensions
     }
 
     public static T AddSubviewsForAutoLayout<T>(this T view, params UIView[] value) where T : UIView
+        => view.AddViews(value);
+
+    public static T AddViews<T>(this T view, params UIView[] value) where T : UIView
     {
         view.AddSubviews(value);
         return view.DoNotTranslateSubviewsAutoresizingMaskIntoConstraints();
