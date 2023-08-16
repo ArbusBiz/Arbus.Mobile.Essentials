@@ -13,147 +13,119 @@ public static class AdvancedFluentLayoutExtensions
 {
     private const float _defaultScale = 1;
 
-    [Obsolete("Use WithSameTop().")]
-    public static FluentLayout AtTopOf(this UIView view, UIView parentView, nfloat? margin = null) =>
-        view.Top().EqualTo().TopOf(parentView).Plus(margin.GetValueOrDefault());
+    public static FluentLayout AtLeading(this UIView view, nfloat? margin = null)
+        => view.Leading().EqualTo().LeadingOf(view.Superview).Plus(margin.GetValueOrDefault());
 
-    [Obsolete("Use WithSameLeft().")]
-    public static FluentLayout AtLeftOf(this UIView view, UIView parentView, nfloat? margin = null) =>
-        view.Left().EqualTo().LeftOf(parentView).Plus(margin.GetValueOrDefault());
+    public static FluentLayout AtTrailing(this UIView view, nfloat? margin = null)
+        => view.Trailing().EqualTo().TrailingOf(view.Superview).Minus(margin.GetValueOrDefault());
 
-    [Obsolete("Use WithSameRight().")]
-    public static FluentLayout AtRightOf(this UIView view, UIView parentView, nfloat? margin = null) =>
-        view.Right().EqualTo().RightOf(parentView).Minus(margin.GetValueOrDefault());
+    public static FluentLayout Below(this UIView view, UIView view2, nfloat? margin = null)
+        => view.Top().EqualTo().BottomOf(view2).Plus(margin.GetValueOrDefault());
 
-    [Obsolete("Use WithSameBottom().")]
-    public static FluentLayout AtBottomOf(this UIView view, UIView parentView, nfloat? margin = null) =>
-        view.Bottom().EqualTo().BottomOf(parentView).Minus(margin.GetValueOrDefault());
+    public static FluentLayout Above(this UIView view, UIView view2, nfloat? margin = null)
+        => view.Bottom().EqualTo().TopOf(view2).Minus(margin.GetValueOrDefault());
 
-    public static FluentLayout AtTopOfSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
-        view.Top().EqualTo().TopOf(parentView.SafeAreaLayoutGuide).Plus(margin.GetValueOrDefault());
-
-    public static FluentLayout AtLeftOfSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
-        view.Left().EqualTo().LeftOf(parentView.SafeAreaLayoutGuide).Plus(margin.GetValueOrDefault());
-
-    public static FluentLayout AtRightOfSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
-        view.Right().EqualTo().RightOf(parentView.SafeAreaLayoutGuide).Minus(margin.GetValueOrDefault());
-
-    public static FluentLayout AtBottomOfSafeArea(this UIView view, UIView parentView, nfloat? margin = null) =>
-        view.Bottom().EqualTo().BottomOf(parentView.SafeAreaLayoutGuide).Minus(margin.GetValueOrDefault());
-
-    public static FluentLayout AtLeadingOf(this UIView view, UIView parentView, nfloat? margin = null) =>
-        view.Leading().EqualTo().LeadingOf(parentView).Plus(margin.GetValueOrDefault());
-
-    public static FluentLayout AtTrailingOf(this UIView view, UIView parentView, nfloat? margin = null) =>
-        view.Trailing().EqualTo().TrailingOf(parentView).Minus(margin.GetValueOrDefault());
-
-    public static FluentLayout Below(this UIView view, UIView previous, nfloat? margin = null)
-        => view.Top().EqualTo().BottomOf(previous).Plus(margin.GetValueOrDefault());
-
-    public static FluentLayout Above(this UIView view, UIView previous, nfloat? margin = null)
-        => view.Bottom().EqualTo().TopOf(previous).Minus(margin.GetValueOrDefault());
-
-    public static FluentLayout WithParentTop(this UIView view, nfloat? margin = null)
+    public static FluentLayout AtTop(this UIView view, nfloat? margin = null)
         => view.WithSameTop(view.Superview, margin);
 
-    public static FluentLayout WithSameTop(this UIView view, UIView previous, nfloat? margin = null)
-        => view.Top().EqualTo().TopOf(previous).Plus(margin.GetValueOrDefault());
+    public static FluentLayout WithSameTop(this UIView view, UIView view2, nfloat? margin = null)
+        => view.Top().EqualTo().TopOf(view2).Plus(margin.GetValueOrDefault());
 
-    public static FluentLayout WithParentLeft(this UIView view, nfloat? margin = null)
+    public static FluentLayout AtTopOfSafeArea(this UIView view, nfloat? margin = null)
+        => view.Top().EqualTo().TopOf(view.Superview.SafeAreaLayoutGuide).Plus(margin.GetValueOrDefault());
+
+    public static FluentLayout AtLeft(this UIView view, nfloat? margin = null)
         => view.WithSameLeft(view.Superview, margin);
 
-    public static FluentLayout WithSameLeft(this UIView view, UIView previous, nfloat? margin = null)
-        => view.Left().EqualTo().LeftOf(previous).Plus(margin.GetValueOrDefault());
+    public static FluentLayout WithSameLeft(this UIView view, UIView view2, nfloat? margin = null)
+        => view.Left().EqualTo().LeftOf(view2).Plus(margin.GetValueOrDefault());
 
-    public static FluentLayout WithParentRight(this UIView view, nfloat? margin = null)
+    public static FluentLayout AtLeftOfSafeArea(this UIView view, nfloat? margin = null)
+        => view.Left().EqualTo().LeftOf(view.Superview.SafeAreaLayoutGuide).Plus(margin.GetValueOrDefault());
+
+    public static FluentLayout AtRight(this UIView view, nfloat? margin = null)
         => view.WithSameRight(view.Superview, margin);
 
-    public static FluentLayout WithSameRight(this UIView view, UIView previous, nfloat? margin = null)
-        => view.Right().EqualTo().RightOf(previous).Minus(margin.GetValueOrDefault());
+    public static FluentLayout WithSameRight(this UIView view, UIView view2, nfloat? margin = null)
+        => view.Right().EqualTo().RightOf(view2).Minus(margin.GetValueOrDefault());
 
-    public static FluentLayout WithParentBottom(this UIView view, nfloat? margin = null)
+    public static FluentLayout AtRightOfSafeArea(this UIView view, nfloat? margin = null)
+        => view.Right().EqualTo().RightOf(view.Superview.SafeAreaLayoutGuide).Minus(margin.GetValueOrDefault());
+
+    public static FluentLayout AtBottom(this UIView view, nfloat? margin = null)
         => view.WithSameBottom(view.Superview, margin);
 
-    public static FluentLayout WithSameBottom(this UIView view, UIView previous, nfloat? margin = null)
-        => view.Bottom().EqualTo().BottomOf(previous).Minus(margin.GetValueOrDefault());
+    public static FluentLayout WithSameBottom(this UIView view, UIView view2, nfloat? margin = null)
+        => view.Bottom().EqualTo().BottomOf(view2).Minus(margin.GetValueOrDefault());
 
-    public static FluentLayout WithParentCenterX(this UIView view)
+    public static FluentLayout AtBottomOfSafeArea(this UIView view, nfloat? margin = null) =>
+        view.Bottom().EqualTo().BottomOf(view.Superview.SafeAreaLayoutGuide).Minus(margin.GetValueOrDefault());
+
+    public static FluentLayout AtCenterX(this UIView view)
         => view.WithSameCenterX(view.Superview);
 
-    public static FluentLayout WithSameCenterX(this UIView view, UIView previous)
-        => view.CenterX().EqualTo().CenterXOf(previous);
+    public static FluentLayout WithSameCenterX(this UIView view, UIView view2)
+        => view.CenterX().EqualTo().CenterXOf(view2);
 
-    public static FluentLayout WithParentCenterY(this UIView view)
+    public static FluentLayout AtCenterY(this UIView view)
         => view.WithSameCenterY(view.Superview);
 
-    public static FluentLayout WithSameCenterY(this UIView view, UIView previous)
-        => view.CenterY().EqualTo().CenterYOf(previous);
+    public static FluentLayout WithSameCenterY(this UIView view, UIView view2)
+        => view.CenterY().EqualTo().CenterYOf(view2);
 
-    public static FluentLayout WithParentLeading(this UIView view)
-        => view.WithSameLeading(view.Superview);
-
-    public static FluentLayout WithSameLeading(this UIView view, UIView previous)
-        => view.Leading().EqualTo().LeadingOf(previous);
-
-    public static FluentLayout WithParentTrailing(this UIView view)
-        => view.WithSameTrailing(view.Superview);
-
-    public static FluentLayout WithSameTrailing(this UIView view, UIView previous)
-        => view.Trailing().EqualTo().TrailingOf(previous);
-
-    public static FluentLayout WithParentWidth(this UIView view)
+    public static FluentLayout MatchWidth(this UIView view)
         => view.WithSameWidth(view.Superview);
 
-    public static FluentLayout WithSameWidth(this UIView view, UIView previous)
-        => view.Width().EqualTo().WidthOf(previous);
+    public static FluentLayout WithSameWidth(this UIView view, UIView view2)
+        => view.Width().EqualTo().WidthOf(view2);
 
-    public static FluentLayout WithRelativeWidth(this UIView view, UIView previous, nfloat? scale = null)
-        => view.Width().EqualTo().WidthOf(previous).WithMultiplier(scale.GetValueOrDefault(_defaultScale));
+    public static FluentLayout WithRelativeWidth(this UIView view, UIView view2, nfloat? scale = null)
+        => view.Width().EqualTo().WidthOf(view2).WithMultiplier(scale.GetValueOrDefault(_defaultScale));
 
-    public static FluentLayout WithParentHeight(this UIView view)
+    public static FluentLayout MatchHeight(this UIView view)
         => view.WithSameHeight(view.Superview);
 
-    public static FluentLayout WithSameHeight(this UIView view, UIView previous)
-        => view.Height().EqualTo().HeightOf(previous);
+    public static FluentLayout WithSameHeight(this UIView view, UIView view2)
+        => view.Height().EqualTo().HeightOf(view2);
 
-    public static FluentLayout WithRelativeHeight(this UIView view, UIView previous, nfloat? scale = null) =>
-        view.Height().EqualTo().HeightOf(previous).WithMultiplier(scale.GetValueOrDefault(_defaultScale));
+    public static FluentLayout WithRelativeHeight(this UIView view, UIView view2, nfloat? scale = null) =>
+        view.Height().EqualTo().HeightOf(view2).WithMultiplier(scale.GetValueOrDefault(_defaultScale));
 
-    public static FluentLayout ToRightOf(this UIView view, UIView previous, nfloat? margin = null) =>
-        view.Left().EqualTo().RightOf(previous).Plus(margin.GetValueOrDefault());
+    public static FluentLayout ToRightOf(this UIView view, UIView view2, nfloat? margin = null) =>
+        view.Left().EqualTo().RightOf(view2).Plus(margin.GetValueOrDefault());
 
-    public static FluentLayout ToLeftOf(this UIView view, UIView previous, nfloat? margin = null) =>
-        view.Right().EqualTo().LeftOf(previous).Minus(margin.GetValueOrDefault());
+    public static FluentLayout ToLeftOf(this UIView view, UIView view2, nfloat? margin = null) =>
+        view.Right().EqualTo().LeftOf(view2).Minus(margin.GetValueOrDefault());
 
-    public static FluentLayout ToTrailingOf(this UIView view, UIView previous, nfloat? margin = null) =>
-        view.Leading().EqualTo().TrailingOf(previous).Plus(margin.GetValueOrDefault());
+    public static FluentLayout ToTrailingOf(this UIView view, UIView view2, nfloat? margin = null) =>
+        view.Leading().EqualTo().TrailingOf(view2).Plus(margin.GetValueOrDefault());
 
-    public static FluentLayout ToLeadingOf(this UIView view, UIView previous, nfloat? margin = null) =>
-    view.Trailing().EqualTo().LeadingOf(previous).Minus(margin.GetValueOrDefault());
+    public static FluentLayout ToLeadingOf(this UIView view, UIView view2, nfloat? margin = null) =>
+    view.Trailing().EqualTo().LeadingOf(view2).Minus(margin.GetValueOrDefault());
 
-    public static FluentLayout ToLeftMargin(this UIView view, UIView previous) =>
-        view.Leading().EqualTo().LeadingMarginOf(previous);
+    public static FluentLayout ToLeftMargin(this UIView view, UIView view2) =>
+        view.Leading().EqualTo().LeadingMarginOf(view2);
 
-    public static FluentLayout ToRightMargin(this UIView view, UIView previous) =>
-        view.Trailing().EqualTo().TrailingMarginOf(previous);
+    public static FluentLayout ToRightMargin(this UIView view, UIView view2) =>
+        view.Trailing().EqualTo().TrailingMarginOf(view2);
 
-    public static FluentLayout ToTopMargin(this UIView view, UIView previous) =>
-        view.Top().EqualTo().TopMarginOf(previous);
+    public static FluentLayout ToTopMargin(this UIView view, UIView view2) =>
+        view.Top().EqualTo().TopMarginOf(view2);
 
-    public static FluentLayout ToBottomMargin(this UIView view, UIView previous) =>
-        view.Bottom().EqualTo().BottomMarginOf(previous);
+    public static FluentLayout ToBottomMargin(this UIView view, UIView view2) =>
+        view.Bottom().EqualTo().BottomMarginOf(view2);
 
-    public static FluentLayout ToLeftOfCenterOf(this UIView view, UIView previous, nfloat? margin = null) =>
-        view.Right().EqualTo().CenterXOf(previous).Minus(margin.GetValueOrDefault(0));
+    public static FluentLayout ToLeftOfCenterOf(this UIView view, UIView view2, nfloat? margin = null) =>
+        view.Right().EqualTo().CenterXOf(view2).Minus(margin.GetValueOrDefault(0));
 
-    public static FluentLayout ToRightOfCenterOf(this UIView view, UIView previous, nfloat? margin = null) =>
-        view.Left().EqualTo().CenterXOf(previous).Plus(margin.GetValueOrDefault(0));
+    public static FluentLayout ToRightOfCenterOf(this UIView view, UIView view2, nfloat? margin = null) =>
+        view.Left().EqualTo().CenterXOf(view2).Plus(margin.GetValueOrDefault(0));
 
-    public static FluentLayout AboveCenterOf(this UIView view, UIView previous, nfloat? margin = null) =>
-        view.Bottom().EqualTo().CenterYOf(previous).Minus(margin.GetValueOrDefault(0));
+    public static FluentLayout AboveCenterOf(this UIView view, UIView view2, nfloat? margin = null) =>
+        view.Bottom().EqualTo().CenterYOf(view2).Minus(margin.GetValueOrDefault(0));
 
-    public static FluentLayout BelowCenterOf(this UIView view, UIView previous, nfloat? margin = null) =>
-        view.Top().EqualTo().CenterYOf(previous).Plus(margin.GetValueOrDefault(0));
+    public static FluentLayout BelowCenterOf(this UIView view, UIView view2, nfloat? margin = null) =>
+        view.Top().EqualTo().CenterYOf(view2).Plus(margin.GetValueOrDefault(0));
 
     public static IEnumerable<FluentLayout> FullWidthOf(this UIView view, UIView parent, nfloat? margin = null)
     {
