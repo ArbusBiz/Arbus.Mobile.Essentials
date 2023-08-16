@@ -45,7 +45,7 @@ stages:
               arguments: >
                 $(project)
                 --output $(Build.ArtifactStagingDirectory)
-                -p:Configuration=$(buildConfiguration);Version=$(Build.SourceBranchName);GenerateDocumentationFile=$(forDeployment)
+                -p:Configuration=$(buildConfiguration);Version=$(Build.SourceBranchName);GenerateDocumentationFile=true
           - task: NuGetCommand@2
             displayName: 'Push to $(nugetFeed)'
             inputs:
