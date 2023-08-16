@@ -5,17 +5,12 @@
 // 
 // Project Lead - Stuart Lodge, @slodge, me@slodge.com
 
+using Arbus.iOS.Essentials.BasicViewExtensions;
+
 namespace Arbus.iOS.Essentials.AutoLayout;
 
 public static class FluentLayoutExtensions
 {
-    [Obsolete("Use AddSubviewsForAutoLayout. The method is to be removed in the future.")]
-    public static void SubviewsDoNotTranslateAutoresizingMaskIntoConstraints(this UIView view)
-    {
-        foreach (var subview in view.Subviews)
-            subview.TranslatesAutoresizingMaskIntoConstraints = false;
-    }
-
     public static UIViewAndLayoutAttribute Left(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.Left);
 
     public static UIViewAndLayoutAttribute Right(this UIView view) => view.WithLayoutAttribute(NSLayoutAttribute.Right);
@@ -56,6 +51,7 @@ public static class FluentLayoutExtensions
 
     public static T AddConstraints<T>(this T view, IEnumerable<FluentLayout> fluentLayouts) where T : UIView
     {
+        view.DoNotTranslateSubviewsAutoresizingMaskIntoConstraints();
         view.AddConstraints(fluentLayouts
             .Where(fluent => fluent != null)
             .Select(fluent => fluent.Constraint.Value)
