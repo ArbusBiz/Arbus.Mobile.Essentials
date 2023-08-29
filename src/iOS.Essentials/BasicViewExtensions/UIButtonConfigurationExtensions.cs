@@ -74,6 +74,18 @@ public static class UIButtonConfigurationExtensions
         return configuration;
     }
 
+    public static UIButtonConfiguration SetImagePadding(this UIButtonConfiguration configuration, float padding)
+    {
+        configuration.ImagePadding = padding;
+        return configuration;
+    }
+
+    public static UIButtonConfiguration SetTitlePadding(this UIButtonConfiguration configuration, float padding)
+    {
+        configuration.TitlePadding = padding;
+        return configuration;
+    }
+
     public static UIButton ToUIButton(this UIButtonConfiguration configuration) => new()
     {
         Configuration = configuration
