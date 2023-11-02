@@ -21,12 +21,6 @@ public static class UIStackViewExtensions
         return stackView;
     }
 
-    public static UIStackView SetLayoutMargins(this UIStackView view, UIEdgeInsets value, bool relativeArrangement)
-    {
-        view.LayoutMargins = value;
-        return view.LayoutMarginsRelativeArrangement(relativeArrangement);
-    }
-
     public static UIStackView LayoutMarginsRelativeArrangement(this UIStackView stackView, bool value = true)
     {
         stackView.LayoutMarginsRelativeArrangement = value;

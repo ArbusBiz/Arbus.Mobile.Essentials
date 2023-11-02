@@ -57,15 +57,15 @@ public static class UIViewExtensions
         return collectionView;
     }
 
-    public static T SetLayoutMargins<T>(this T view, UIEdgeInsets value) where T : UIView
+    public static T SetDirectionalLayoutMargins<T>(this T view, nfloat top, nfloat leading, nfloat bottom, nfloat trailing) where T : UIView
     {
-        view.LayoutMargins = value;
+        view.SetDirectionalLayoutMargins(new(top, leading, bottom, trailing));
         return view;
     }
 
-    public static T SetLayoutMargins<T>(this T view, nfloat top, nfloat left, nfloat bottom, nfloat right) where T : UIView
+    public static T SetDirectionalLayoutMargins<T>(this T view, NSDirectionalEdgeInsets margins) where T : UIView
     {
-        view.LayoutMargins = new(top, left, bottom, right);
+        view.DirectionalLayoutMargins = margins;
         return view;
     }
 
