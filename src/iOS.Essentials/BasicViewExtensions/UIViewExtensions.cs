@@ -230,10 +230,8 @@ public static class UIViewExtensions
         return view;
     }
     
-    public static TView ConstraintHeightTo<TView>(this TView view, NSLayoutDimension anchor, nfloat multiplier = default, nfloat constant = default) where TView : UIView
+    public static TView ConstraintHeightTo<TView>(this TView view, NSLayoutDimension anchor, float multiplier = 1, nfloat constant = default) where TView : UIView
     {
-        if (multiplier == default)
-            multiplier = 1;
         view.HeightAnchor.ConstraintEqualTo(anchor, multiplier , constant).Active = true;
         return view;
     }
@@ -250,10 +248,8 @@ public static class UIViewExtensions
         return view;
     }
     
-    public static TView ConstraintWidthTo<TView>(this TView view, NSLayoutDimension anchor, nfloat multiplier = default, nfloat constant = default) where TView : UIView
+    public static TView ConstraintWidthTo<TView>(this TView view, NSLayoutDimension anchor, float multiplier = 1, nfloat constant = default) where TView : UIView
     {
-        if (multiplier == default)
-            multiplier = 1;
         view.WidthAnchor.ConstraintEqualTo(anchor, multiplier , constant).Active = true;
         return view;
     }
@@ -325,24 +321,6 @@ public static class UIViewExtensions
         where TView : UIView
     {
         view.RightAnchor.ConstraintEqualTo(anchor, -constant).Active = true;
-        return view;
-    }
-
-    public static NSLayoutConstraint Activate(this NSLayoutConstraint constraint)
-    {
-        constraint.Active = true;
-        return constraint;
-    }
-    
-    public static NSLayoutConstraint Deactivate(this NSLayoutConstraint constraint)
-    {
-        constraint.Active = false;
-        return constraint;
-    }
-
-    public static NSLayoutConstraint SetConstant(this NSLayoutConstraint view, nfloat constant)
-    {
-        view.Constant = constant;
         return view;
     }
 }
