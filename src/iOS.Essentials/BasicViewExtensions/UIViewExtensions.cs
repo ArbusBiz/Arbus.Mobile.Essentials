@@ -224,41 +224,6 @@ public static class UIViewExtensions
         return view;
     }
 
-    /// <summary>
-    /// Only invoke in UIViewController.ViewDidLayoutSubviews() where view's height will not be null
-    /// </summary>
-    /// <typeparam name="TView"></typeparam>
-    /// <param name="view"></param>
-    public static void MakeOvalRectangle<TView>(this TView view) where TView : UIView
-    {
-        var radius = view.Bounds.Height / 2;
-        view.RoundAllCorners(radius);
-    }
-
-    public static TView Hide<TView>(this TView view) where TView : UIView
-    {
-        view.Hidden = true;
-        return view;
-    }
-
-    public static TView Show<TView>(this TView view) where TView : UIView
-    {
-        view.Hidden = false;
-        return view;
-    }
-
-    public static TView DisablSpellChecking<TView>(this TView view) where TView : UITextField
-    {
-        view.SpellCheckingType = UITextSpellCheckingType.No;
-        return view;
-    }
-
-    public static TView DisableAutocorrection<TView>(this TView view) where TView : UITextField
-    {
-        view.AutocorrectionType = UITextAutocorrectionType.No;
-        return view;
-    }
-
     public static TView ConstraintHeightTo<TView>(this TView view, nfloat constant) where TView : UIView
     {
         view.HeightAnchor.ConstraintEqualTo(constant).Active = true;
