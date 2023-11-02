@@ -70,12 +70,10 @@ public static class UIViewExtensions
     }
 
     public static T AddSubviewsForAutoLayout<T>(this T view, params UIView[] value) where T : UIView
-        => view.AddViews(value);
-
-    public static T AddViews<T>(this T view, params UIView[] value) where T : UIView
     {
         view.AddSubviews(value);
-        return view.DoNotTranslateSubviewsAutoresizingMaskIntoConstraints();
+        view.DoNotTranslateSubviewsAutoresizingMaskIntoConstraints();
+        return view;
     }
 
     public static T DoNotTranslateSubviewsAutoresizingMaskIntoConstraints<T>(this T view) where T : UIView
@@ -229,31 +227,31 @@ public static class UIViewExtensions
         view.HeightAnchor.ConstraintEqualTo(constant).Active = true;
         return view;
     }
-    
+
     public static TView ConstraintHeightTo<TView>(this TView view, NSLayoutDimension anchor, float multiplier = 1, nfloat constant = default) where TView : UIView
     {
-        view.HeightAnchor.ConstraintEqualTo(anchor, multiplier , constant).Active = true;
+        view.HeightAnchor.ConstraintEqualTo(anchor, multiplier, constant).Active = true;
         return view;
     }
-    
+
     public static TView ConstraintHeightToWidth<TView>(this TView view) where TView : UIView
     {
         view.HeightAnchor.ConstraintEqualTo(view.WidthAnchor).Active = true;
         return view;
     }
-    
+
     public static TView ConstraintWidthTo<TView>(this TView view, nfloat constant) where TView : UIView
     {
         view.WidthAnchor.ConstraintEqualTo(constant).Active = true;
         return view;
     }
-    
+
     public static TView ConstraintWidthTo<TView>(this TView view, NSLayoutDimension anchor, float multiplier = 1, nfloat constant = default) where TView : UIView
     {
-        view.WidthAnchor.ConstraintEqualTo(anchor, multiplier , constant).Active = true;
+        view.WidthAnchor.ConstraintEqualTo(anchor, multiplier, constant).Active = true;
         return view;
     }
-    
+
     public static TView ConstraintWidthToHeight<TView>(this TView view) where TView : UIView
     {
         view.WidthAnchor.ConstraintEqualTo(view.HeightAnchor).Active = true;
@@ -287,7 +285,7 @@ public static class UIViewExtensions
         view.CenterYAnchor.ConstraintEqualTo(anchor, constant).Active = true;
         return view;
     }
-    
+
     public static TView ConstraintCenterTo<TView>(this TView view, UIView secondView, nfloat constant = default)
         where TView : UIView
     {
@@ -309,14 +307,14 @@ public static class UIViewExtensions
         view.TrailingAnchor.ConstraintEqualTo(anchor, -constant).Active = true;
         return view;
     }
-    
+
     public static TView ConstraintLeftTo<TView>(this TView view, NSLayoutAnchor<NSLayoutXAxisAnchor> anchor, nfloat constant = default)
         where TView : UIView
     {
         view.LeftAnchor.ConstraintEqualTo(anchor, constant).Active = true;
         return view;
     }
-    
+
     public static TView ConstraintRightTo<TView>(this TView view, NSLayoutAnchor<NSLayoutXAxisAnchor> anchor, nfloat constant = default)
         where TView : UIView
     {

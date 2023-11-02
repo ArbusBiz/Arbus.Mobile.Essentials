@@ -9,6 +9,14 @@ public static class UIStackViewExtensions
         return stackView;
     }
 
+    public static UIStackView AddArrangedSubviewsForAutolayout(this UIStackView stackView, params UIView[] subviews)
+    {
+        foreach (var subview in subviews)
+            stackView.AddArrangedSubview(subview);
+        stackView.DoNotTranslateSubviewsAutoresizingMaskIntoConstraints();
+        return stackView;
+    }
+
     public static UIStackView SetAxis(this UIStackView stackView, UILayoutConstraintAxis constraintAxis)
     {
         stackView.Axis = constraintAxis;
