@@ -223,4 +223,104 @@ public static class UIViewExtensions
         view.SetContentHuggingPriority(_lowestPriority, axis);
         return view;
     }
+
+    public static TView ConstraintHeightTo<TView>(this TView view, nfloat constant) where TView : UIView
+    {
+        view.HeightAnchor.ConstraintEqualTo(constant).Active = true;
+        return view;
+    }
+    
+    public static TView ConstraintHeightTo<TView>(this TView view, NSLayoutDimension anchor, float multiplier = 1, nfloat constant = default) where TView : UIView
+    {
+        view.HeightAnchor.ConstraintEqualTo(anchor, multiplier , constant).Active = true;
+        return view;
+    }
+    
+    public static TView ConstraintHeightToWidth<TView>(this TView view) where TView : UIView
+    {
+        view.HeightAnchor.ConstraintEqualTo(view.WidthAnchor).Active = true;
+        return view;
+    }
+    
+    public static TView ConstraintWidthTo<TView>(this TView view, nfloat constant) where TView : UIView
+    {
+        view.WidthAnchor.ConstraintEqualTo(constant).Active = true;
+        return view;
+    }
+    
+    public static TView ConstraintWidthTo<TView>(this TView view, NSLayoutDimension anchor, float multiplier = 1, nfloat constant = default) where TView : UIView
+    {
+        view.WidthAnchor.ConstraintEqualTo(anchor, multiplier , constant).Active = true;
+        return view;
+    }
+    
+    public static TView ConstraintWidthToHeight<TView>(this TView view) where TView : UIView
+    {
+        view.WidthAnchor.ConstraintEqualTo(view.HeightAnchor).Active = true;
+        return view;
+    }
+
+    public static TView ConstraintBottomTo<TView>(this TView view, NSLayoutAnchor<NSLayoutYAxisAnchor> anchor, nfloat constant = default)
+        where TView : UIView
+    {
+        view.BottomAnchor.ConstraintEqualTo(anchor, -constant).Active = true;
+        return view;
+    }
+
+    public static TView ConstraintTopTo<TView>(this TView view, NSLayoutAnchor<NSLayoutYAxisAnchor> anchor, nfloat constant = default)
+        where TView : UIView
+    {
+        view.TopAnchor.ConstraintEqualTo(anchor, constant).Active = true;
+        return view;
+    }
+
+    public static TView ConstraintCenterXTo<TView>(this TView view, NSLayoutAnchor<NSLayoutXAxisAnchor> anchor, nfloat constant = default)
+        where TView : UIView
+    {
+        view.CenterXAnchor.ConstraintEqualTo(anchor, constant).Active = true;
+        return view;
+    }
+
+    public static TView ConstraintCenterYTo<TView>(this TView view, NSLayoutAnchor<NSLayoutYAxisAnchor> anchor, nfloat constant = default)
+        where TView : UIView
+    {
+        view.CenterYAnchor.ConstraintEqualTo(anchor, constant).Active = true;
+        return view;
+    }
+    
+    public static TView ConstraintCenterTo<TView>(this TView view, UIView secondView, nfloat constant = default)
+        where TView : UIView
+    {
+        view.CenterYAnchor.ConstraintEqualTo(secondView.CenterYAnchor, constant).Active = true;
+        view.CenterXAnchor.ConstraintEqualTo(secondView.CenterXAnchor, constant).Active = true;
+        return view;
+    }
+
+    public static TView ConstraintLeadingTo<TView>(this TView view, NSLayoutAnchor<NSLayoutXAxisAnchor> anchor, nfloat constant = default)
+        where TView : UIView
+    {
+        view.LeadingAnchor.ConstraintEqualTo(anchor, constant).Active = true;
+        return view;
+    }
+
+    public static TView ConstraintTrailingTo<TView>(this TView view, NSLayoutAnchor<NSLayoutXAxisAnchor> anchor, nfloat constant = default)
+        where TView : UIView
+    {
+        view.TrailingAnchor.ConstraintEqualTo(anchor, -constant).Active = true;
+        return view;
+    }
+    
+    public static TView ConstraintLeftTo<TView>(this TView view, NSLayoutAnchor<NSLayoutXAxisAnchor> anchor, nfloat constant = default)
+        where TView : UIView
+    {
+        view.LeftAnchor.ConstraintEqualTo(anchor, constant).Active = true;
+        return view;
+    }
+    
+    public static TView ConstraintRightTo<TView>(this TView view, NSLayoutAnchor<NSLayoutXAxisAnchor> anchor, nfloat constant = default)
+        where TView : UIView
+    {
+        view.RightAnchor.ConstraintEqualTo(anchor, -constant).Active = true;
+        return view;
+    }
 }
