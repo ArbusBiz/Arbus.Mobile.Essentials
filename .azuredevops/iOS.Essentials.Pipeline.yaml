@@ -17,6 +17,12 @@ stages:
         - checkout: self
           fetchDepth: 1
         - task: DotNetCoreCLI@2
+          displayName: 'Install workloads'
+          inputs:
+            command: custom
+            custom: workload
+            arguments: restore $(project)
+        - task: DotNetCoreCLI@2
           displayName: 'Build iOS.Essentials'
           inputs:
             command: build
