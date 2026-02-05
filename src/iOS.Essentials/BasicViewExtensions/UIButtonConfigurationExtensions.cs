@@ -90,4 +90,16 @@ public static class UIButtonConfigurationExtensions
     {
         Configuration = configuration
     };
+
+    public static UIButtonConfiguration SetTitleFont(this UIButtonConfiguration configuration, UIFont font)
+    {
+        var originTransformer = configuration.TitleTextAttributesTransformer;
+        configuration.TitleTextAttributesTransformer = x =>
+        {
+            originTransformer?.Invoke(x);
+            x[UIStringAttributeKey.Font] = font;
+            return x;
+        };
+        return configuration;
+    }
 }
