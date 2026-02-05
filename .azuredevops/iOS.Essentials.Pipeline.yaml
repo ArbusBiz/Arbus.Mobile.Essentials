@@ -16,6 +16,10 @@ stages:
         steps:
         - checkout: self
           fetchDepth: 1
+        - task: UseDotNet@2
+          inputs:
+            packageType: 'sdk'
+            version: '8.x'
         - task: DotNetCoreCLI@2
           displayName: 'Install workloads'
           inputs:
